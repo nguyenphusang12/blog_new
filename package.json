@@ -7,7 +7,9 @@
     "beautiful": "lint-staged",
     "watch": "node-sass --watch src/resource/scss -o src/public/css",
     "start": "nodemon --inspect src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare":"husky install",
+    "pre-commit": "lint-staged"
   },
   "lint-staged": {
     "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --write --tab-width 4"
