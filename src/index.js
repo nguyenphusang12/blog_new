@@ -5,12 +5,9 @@ const hdb = require('express-handlebars');
 const port = 8888;
 const path = require('path');
 const route = require('./routes');
+const a = 1;
 
-const object1 = {
-    a: 1,
-    b: 2,
-    c: 3,
-};
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 
