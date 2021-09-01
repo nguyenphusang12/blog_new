@@ -1,38 +1,38 @@
 {
-  "name": "blog_new",
-  "version": "1.0.0",
-  "description": "",
-  "main": "src/index.js",
-  "scripts": {
-    "beautiful": "lint-staged",
-    "watch": "node-sass --watch src/resource/scss -o src/public/css",
-    "start": "nodemon --inspect src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare":"husky install"
-  },
-  "lint-staged": {
-    "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --write --tab-width 4"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nguyenphusang12/blog_new.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nguyenphusang12/blog_new/issues"
-  },
-  "homepage": "https://github.com/nguyenphusang12/blog_new#readme",
-  "dependencies": {
-    "express": "^4.17.1",
-    "express-handlebars": "^5.3.3"
-  },
-  "devDependencies": {
-    "husky": "^7.0.2",
-    "lint-staged": "^11.1.2",
-    "morgan": "^1.10.0",
-    "node-sass": "^6.0.1",
-    "nodemon": "^2.0.12",
-    "prettier": "^2.3.2"
-  }
+    "name": "blog_new",
+    "version": "1.0.0",
+    "description": "",
+    "main": "src/index.js",
+    "scripts": {
+        "beautiful": "lint-staged",
+        "watch": "node-sass --watch src/resource/scss -o src/public/css",
+        "start": "nodemon --inspect src/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "prepare": "husky install"
+    },
+    "lint-staged": {
+        "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --write --tab-width 4"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nguyenphusang12/blog_new.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/nguyenphusang12/blog_new/issues"
+    },
+    "homepage": "https://github.com/nguyenphusang12/blog_new#readme",
+    "dependencies": {
+        "express": "^4.17.1",
+        "express-handlebars": "^5.3.3"
+    },
+    "devDependencies": {
+        "husky": "^7.0.2",
+        "lint-staged": "^11.1.2",
+        "morgan": "^1.10.0",
+        "node-sass": "^6.0.1",
+        "nodemon": "^2.0.12",
+        "prettier": "^2.3.2"
+    }
 }
