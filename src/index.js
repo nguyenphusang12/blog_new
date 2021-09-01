@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const app = express();
 const hdb = require('express-handlebars');
-const port = 6789;
+const port = 8888;
 const path = require('path');
 const route = require('./routes');
 
@@ -20,7 +20,6 @@ app.set('views', path.join(__dirname, 'resource/views'));
 
 //route init
 route(app);
-
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
