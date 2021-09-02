@@ -6,8 +6,9 @@ const port = 8888;
 const path = require('path');
 const route = require('./routes');
 const a = 1;
+const db = require('./config/db')
 
-
+db.connect();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -21,11 +22,11 @@ app.engine('.hbs', hdb({ extname: '.hbs' }));
 
 app.set('view engine', '.hbs');
 
-app.set('views', path.join(__dirname, 'resource/views'));
+app.set('views', path.join(__dirname, 'resource', 'views'));
 
 //route init
 route(app);
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`App listening at http://localhost:${port}`);
 });
