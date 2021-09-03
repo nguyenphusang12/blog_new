@@ -3,12 +3,16 @@
         {{#each Courses}}
         <div class="col-sm-12 col-lg-4 mt-4">
             <div class="card" style="width: 95%;margin:auto">
-                <img class="card-img-top" src="{{this.img}}" alt="{{this.description}}" 
-                style="object-fit: cover;
-                object-position: center;
-                height: 307px;">
+                <a href="/course/{{this.slug}}">
+                    <img class="card-img-top" src="{{this.img}}" alt="{{this.description}}" 
+                    style="object-fit: cover;
+                    object-position: center;
+                    height: 307px;">
+                </a>
                 <div class="card-body">
-                    <h5 class="card-title">{{this.name}}</h5>
+                    <a href="/course/{{this.slug}}" style="text-decoration: none; color:#333">
+                        <h5 class="card-title">{{this.name}}</h5>
+                    </a>
                     <p class="card-text card-text-edit">{{this.description}}</p>
                     <a href="#" class="btn btn-primary">Buy Now</a>
                 </div>

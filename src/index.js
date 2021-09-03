@@ -5,8 +5,8 @@ const hdb = require('express-handlebars');
 const port = 8888;
 const path = require('path');
 const route = require('./routes');
-const a = 1;
-const db = require('./config/db')
+const db = require('./config/db');
+var methodOverride = require('method-override');
 
 db.connect();
 
@@ -16,9 +16,19 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
 
+app.use(methodOverride('_method'));
+
 app.use(morgan('combined'));
 
-app.engine('.hbs', hdb({ extname: '.hbs' }));
+app.engine(
+    '.hbs',
+    hdb({
+        extname: '.hbs',
+        helpers: {
+            sum: (a, b) => a + b,
+        },
+    }),
+);
 
 app.set('view engine', '.hbs');
 
