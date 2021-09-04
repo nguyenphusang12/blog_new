@@ -1,44 +1,31 @@
 <div class="container">
     <div class="mt-4">
-        <div style="display: flex;justify-content: space-between;">
-            <div class="h3">
-                Khóa học của tôi
-            </div>
-            <div class="h3">
-                <a href="/course/create" style="text-decoration: none;color: red;">
-                    Tạo mới khóa học
-                </a>
-            </div>
+        <a href="/me/stored/courses">Quay lại</a>
+        <div class="h3">
+            Thùng rác
         </div>
-        <a href="/me/trash/course" style="text-decoration:none">
-            Thùng rác {{count}}
-        </a>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">STT</th>
                     <th scope="col">Tên khóa học</th>
-                    <th scope="col">Trình độ</th>
-                    <th scope="col" colspan = 4>Thời gian tạo</th>
+                    <th scope="col" colspan = 4>Thời gian xóa</th>
                 </tr>
             </thead>
             <tbody>
                 {{#each course}}
                     <tr>
                         <th scope="row">{{sum @index 1}}</th>
-                        <td>
-                            <a style="text-decoration:none;color:rgb(51, 51, 144)" href="/course/{{this.slug}}">{{this.name}}</a>
-                        </td>
-                        <td>{{this.level}}</td>
-                        <td>{{this.createdAt}}</td>
-                        <td><a href="/course/{{this._id}}/edit" class="btn btn-light">Sửa</a></td>
-                        <td><a href="" class="btn btn-light" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-course">Xóa</a></td>
+                        <td>{{this.name}}</td>
+                        <td>{{this.deletedAt}}</td>
+                        <td><a href="/course/{{this._id}}/edit" data-id="{{this._id}}" class="btn-restore btn btn-light">Khôi phục</a></td>
+                        <td><a href="" class="btn btn-light" data-id="{{this._id}}" data-toggle="modal"  data-target="#delete-course">Xóa vĩnh viễn</a></td>
                     </tr>
                 {{else}}
                     <tr>
                         <th colspan="5" class="text-center">
-                            Bạn chưa đăng khóa học nào
-                            <a href="/course/create">Click để đăng</a>
+                            Thùng rác trống
+                            <a href="/me/stored/courses">Danh sách khóa học</a>
                         </th>
                     </tr>
                 {{/each}}
@@ -59,28 +46,40 @@
         </button>
       </div>
       <div class="modal-body">
-        Bạn có chắc chắn muốn xóa khóa học này ?
+          Hành động này không thể khôi phục. Bạn có chắc chắn muốn xóa vĩnh viễn ?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-        <button id="btn-delete" type="button" class="btn btn-danger">Xóa</button>
+        <button id="btn-delete" type="button" class="btn btn-danger">Xóa vĩnh viễn</button>
       </div>
     </div>
   </div>
 </div>
 <form method="POST" name="delete-course-form" ></form>
+<form method="POST" name="restore-course-form" ></form>
 <script>
     document.addEventListener("DOMContentLoaded",function(){
         var courseId;
         var formDelete = document.forms['delete-course-form'];
         var btnDeleteCourse = document.getElementById('btn-delete');
+
+        var formRestore = document.forms['restore-course-form'];
+        var btnRestore = $('.btn-restore');
+
         $('#delete-course').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) 
             courseId = button.data('id') 
         })
         btnDeleteCourse.onclick = function () {
-            formDelete.action = "/course/" + courseId + "?_method=DELETE";
+            formDelete.action = "/course/" + courseId +"/force" + "?_method=DELETE";
             formDelete.submit()
         }
+
+        btnRestore.click(function(e){
+            e.preventDefault()
+            courseId = $(this).data('id');
+            formDelete.action = "/course/" + courseId + "/restore" + "?_method=PATCH";
+            formDelete.submit()
+        })
     })
 </script>
