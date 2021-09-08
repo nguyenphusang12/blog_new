@@ -17,7 +17,7 @@
                 <option value="restore">Khôi phục</option>
                 <option value="deletePermanently">Xóa vĩnh viễn</option>
             </select>
-            <button type="submit" class="btn btn-primary disabled btn-action">Action</button>
+            <button type="submit" class="btn btn-primary btn-action" disabled>Action</button>
         </div>
         <table class="table">
             <thead>
@@ -35,10 +35,10 @@
                                 <input class="form-check-input" type="checkbox" name="courseIds[]" value="{{this._id}}" id="flexCheckDefault">
                             </div>
                         </td>
-                        <th scope="row">{{sum @index 1}}</th>
+                        <th scope="row">{{this._id}}</th>
                         <td>{{this.name}}</td>
                         <td>{{this.deletedAt}}</td>
-                        <td><a href="/course/{{this._id}}/edit" data-id="{{this._id}}" class="btn-restore btn btn-light">Khôi phục</a></td>
+                        <td><a href="" data-id="{{this._id}}" class="btn-restore btn btn-light">Khôi phục</a></td>
                         <td><a href="" class="btn btn-light" data-id="{{this._id}}" data-toggle="modal"  data-target="#delete-course">Xóa vĩnh viễn</a></td>
                     </tr>
                 {{else}}
@@ -88,11 +88,11 @@
         var checkItemCourseBtn = $('input[name="courseIds[]"]');
         var checkAllBtn = $('#checkAll');
         var btnAction = $('.btn-action');
-        function renderStatusAction(){
+       function renderStatusAction(){
             if ($('input[name="courseIds[]"]:checked').length > 0){
-                btnAction.removeClass('disabled');
+                btnAction.attr('disabled',false);
             } else {
-                btnAction.addClass('disabled');
+                btnAction.attr('disabled',true);
             }
         }
 

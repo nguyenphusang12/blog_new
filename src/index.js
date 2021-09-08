@@ -6,7 +6,9 @@ const port = 8888;
 const path = require('path');
 const route = require('./routes');
 const db = require('./config/db');
-var methodOverride = require('method-override');
+const methodOverride = require('method-override');
+const sortMiddleware = require('./app/middlewares/sortMiddleware');
+
 
 db.connect();
 
@@ -18,15 +20,14 @@ app.use(express.json());
 
 app.use(methodOverride('_method'));
 
-// app.use(morgan('combined'));
+app.use(sortMiddleware);
+
 
 app.engine(
     '.hbs',
     hdb({
         extname: '.hbs',
-        helpers: {
-            sum: (a, b) => a + b,
-        },
+        helpers: require('./helpers/handlebars')
     }),
 );
 

@@ -82,7 +82,7 @@ class CourseController {
                     .catch(next);
                 break;
             case 'deletePermanently':
-                Course.deleteOne({ _id: { $in: req.body.courseIds } })
+                Course.deleteMany({ _id: { $in: req.body.courseIds } })
                     .then(() => res.redirect('back'))
                     .catch(next);
                 break;

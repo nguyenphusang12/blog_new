@@ -7,7 +7,7 @@ const {
 class MeController {
     //[Get]  /me/stored/courses
     meCourses(req, res, next) {
-        Promise.all([Course.find({}), Course.countDocumentsDeleted()])
+        Promise.all([Course.find({}).sortable(req), Course.countDocumentsDeleted()])
             .then(([course, count]) => {
                 res.render('me/me-courses', {
                     course: multipleMongooseToObject(course),
